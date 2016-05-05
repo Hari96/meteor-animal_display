@@ -32,14 +32,14 @@
     </div>
 
     <!-- A navigation menu that selects different views -->
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs bot">
           <li role="" class="active"><a href="#" id="animals-tab" >Animals</a></li>
           <li role=""><a href="#" id="reptiles-tab" data-id=0>Reptiles</a></li>
           <li role=""><a href="#" id="mammals-tab" data-id=1>Mammals</a></li>
           <li role=""><a href="#" id="birds-tab" data-id=2>Birds</a></li>
           <li role=""><a href="#" id="slideshow-tab" >Slideshow</a></li>
         </ul>
-    <br/><br/>
+
 
     <div id="content"  class="container-fluid"  role="main">
     </div>
@@ -56,7 +56,8 @@
 
             <div class="caption">
                 <h4> {{name}} </h4>
-                <p>{{animals.length}} animals</p>
+                <P><em>Click</em> on image to see</p>
+                <p>{{animals.length}} different {{name}}</p>
             </div>
           </div>
       </div>
@@ -65,6 +66,9 @@
     </script>
 
     <script id="category-template" type="text/x-handlebars-template">
+    <div class="bot">
+    <h5>To see a different picture <em>Click</em> on an image</h5>
+    </div>
     <div class="row">
       <!-- xs-12 : small display shows a single column (taking up 12 grid columns)-->
       <!-- md-3 : medium and up displays use 3 grid columns per column -->
@@ -98,8 +102,48 @@
 
     <script id="slideshow-template" type="text/x-handlebars-template">
       <div class="row">
-      </div>
+        <div class="col-md-6">
+
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+
+           <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+              {{#each animals}}
+                <div class="item {{#if @first}}active{{/if}}">
+                 <img class="carousel-img" src="{{image1}}" alt=""/>
+                <div class="carousel-caption">
+                  <strong>{{name}}</strong>
+                </div>
+              </div> <!-- / carousel item -->
+              {{/each}}
+
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+        </div> <!-- / carousel -->
+      </div> <!-- / col -->
+    </div> <!-- / row -->
     </script>
+
 
 
 
